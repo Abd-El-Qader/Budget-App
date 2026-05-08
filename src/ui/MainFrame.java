@@ -13,6 +13,11 @@ import service.TransactionService;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Main graphical user interface for the Personal Budgeting Software.
+ * Handles user interaction and connects UI actions with system services.
+ */
+
 public class MainFrame extends JFrame {
     private final AuthService authService = new AuthService();
     private final TransactionService transactionService = new TransactionService();
@@ -23,6 +28,9 @@ public class MainFrame extends JFrame {
     private User currentUser;
     private final JTextArea outputArea = new JTextArea();
 
+    /**
+     * Creates and initializes the main application window.
+     */
     public MainFrame() {
         setTitle("Personal Budgeting Software");
         setSize(720, 520);
@@ -65,6 +73,12 @@ public class MainFrame extends JFrame {
         loadButton.addActionListener(e -> loadSavedData());
     }
 
+    /**
+     * Checks if a user is logged in before accessing protected features.
+     *
+     * @return true if a user is logged in, otherwise false
+     */
+
     private boolean requireLogin() {
         if (currentUser == null) {
             JOptionPane.showMessageDialog(this, "Please login first.");
@@ -74,6 +88,9 @@ public class MainFrame extends JFrame {
         return true;
     }
 
+    /**
+     * Handles user signup through dialog inputs.
+     */
     private void signUp() {
         String name = JOptionPane.showInputDialog(this, "Name:");
         String email = JOptionPane.showInputDialog(this, "Email:");
@@ -89,6 +106,9 @@ public class MainFrame extends JFrame {
         }
     }
 
+    /**
+     * Handles user login.
+     */
     private void login() {
         String email = JOptionPane.showInputDialog(this, "Email:");
         String password = JOptionPane.showInputDialog(this, "Password:");
@@ -103,10 +123,14 @@ public class MainFrame extends JFrame {
         }
     }
 
+    /**
+     * Adds a new transaction for the logged-in user.
+     */
     private void addTransaction() {
-        if (!requireLogin()) return;
+        if (!requireLogin())
+            return;
 
-        String[] types = {"INCOME", "EXPENSE"};
+        String[] types = { "INCOME", "EXPENSE" };
         String selectedType = (String) JOptionPane.showInputDialog(
                 this, "Transaction Type:", "Add Transaction",
                 JOptionPane.QUESTION_MESSAGE, null, types, types[0]);
@@ -132,8 +156,12 @@ public class MainFrame extends JFrame {
         }
     }
 
+    /**
+     * Creates a new budget.
+     */
     private void createBudget() {
-        if (!requireLogin()) return;
+        if (!requireLogin())
+            return;
 
         String category = JOptionPane.showInputDialog(this, "Budget Category:");
         String limitText = JOptionPane.showInputDialog(this, "Budget Limit:");
@@ -147,8 +175,12 @@ public class MainFrame extends JFrame {
         }
     }
 
+    /**
+     * Displays all budgets and their current status.
+     */
     private void trackBudgetAlert() {
-        if (!requireLogin()) return;
+        if (!requireLogin())
+            return;
 
         StringBuilder text = new StringBuilder("===== BUDGETS =====\n");
 
@@ -164,8 +196,12 @@ public class MainFrame extends JFrame {
         outputArea.setText(text.toString());
     }
 
+    /**
+     * Creates a new financial goal.
+     */
     private void createGoal() {
-        if (!requireLogin()) return;
+        if (!requireLogin())
+            return;
 
         String name = JOptionPane.showInputDialog(this, "Goal Name:");
         String targetText = JOptionPane.showInputDialog(this, "Target Amount:");
@@ -179,12 +215,19 @@ public class MainFrame extends JFrame {
         }
     }
 
+    /**
+     * Generates and displays the financial report.
+     */
     private void showReport() {
-        if (!requireLogin()) return;
+        if (!requireLogin())
+            return;
 
         outputArea.setText(reportService.generate(transactionService.getAll()));
     }
 
+    /**
+     * Loads and displays saved transactions, budgets, and goals.
+     */
     private void loadSavedData() {
         StringBuilder text = new StringBuilder();
 

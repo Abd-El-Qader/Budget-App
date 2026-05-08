@@ -5,9 +5,20 @@ import model.User;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Repository class for User entities.
+ * Handles storing, retrieving the Users
+ */
 public class UserRepository {
     private static final String FILE_NAME = "users.txt";
 
+    /**
+     * Saves a user if the email not already registered
+     * 
+     * @param user the user to be saved
+     * @return true if the user saved successfully or false if the email already
+     *         exists
+     */
     public boolean save(User user) {
         if (find(user.getEmail()) != null) {
             return false;
@@ -22,6 +33,12 @@ public class UserRepository {
         }
     }
 
+    /**
+     * Finds a user by email.
+     *
+     * @param email the email to search for
+     * @return the matching user or null if not found
+     */
     public User find(String email) {
         File file = new File(FILE_NAME);
 

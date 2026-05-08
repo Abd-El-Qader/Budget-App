@@ -5,9 +5,19 @@ import model.Budget;
 import java.io.*;
 import java.util.*;
 
+/**
+ * This class responsible for managing budget data.
+ * It handles storing, retrieving, updating, and deleting budgets.
+ */
+
 public class BudgetRepository {
     private static final String FILE_NAME = "budgets.txt";
 
+    /**
+     * Saves a budget or updates it if it already exists.
+     * 
+     * @param budget the budget object to be saved or updated
+     */
     public void save(Budget budget) {
         List<Budget> budgets = getAll();
         boolean updated = false;
@@ -27,6 +37,12 @@ public class BudgetRepository {
         writeAll(budgets);
     }
 
+    /**
+     * Saves an added expense to a budget category.
+     * 
+     * @param category the category of the budget
+     * @param amount   the expense amount to be saved
+     */
     public void addExpense(String category, double amount) {
         List<Budget> budgets = getAll();
 
@@ -39,6 +55,12 @@ public class BudgetRepository {
         writeAll(budgets);
     }
 
+    /**
+     * Finds a budget by its category
+     * 
+     * @param category the category of the budget to search for
+     * @return the matching budgt or null if not found
+     */
     public Budget findByCategory(String category) {
         for (Budget budget : getAll()) {
             if (budget.getCategory().equalsIgnoreCase(category)) {
@@ -49,6 +71,11 @@ public class BudgetRepository {
         return null;
     }
 
+    /**
+     * Retrieves all budgets from the file.
+     *
+     * @return list of all stored budgets or an empty list if file does not exist
+     */
     public List<Budget> getAll() {
         List<Budget> budgets = new ArrayList<>();
         File file = new File(FILE_NAME);
@@ -72,6 +99,11 @@ public class BudgetRepository {
         return budgets;
     }
 
+    /**
+     * Writes all budgets to the file, replacing existing content.
+     *
+     * @param budgets the list of budgets to be saved
+     */
     private void writeAll(List<Budget> budgets) {
         try (FileWriter writer = new FileWriter(FILE_NAME, false)) {
             for (Budget budget : budgets) {

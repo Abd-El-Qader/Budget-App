@@ -1,3 +1,7 @@
+/**
+ * Entry point of the application.
+ * Launches the GUI using Swing's event dispatch thread.
+ */
 import ui.MainFrame;
 
 import javax.swing.SwingUtilities;

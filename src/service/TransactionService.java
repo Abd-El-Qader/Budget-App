@@ -6,9 +6,18 @@ import repository.TransactionRepository;
 
 import java.util.List;
 
+/**
+ * Service class responsible for transactions operations and business logic
+ */
 public class TransactionService {
     private TransactionRepository repo = new TransactionRepository();
 
+    /**
+     * Adds a transaction and updates the user's balance.
+     *
+     * @param user the user associated with the transaction
+     * @param transaction the transaction to be added
+     */
     public void add(User user, Transaction transaction) {
         if (transaction.getAmount() <= 0) {
             return;
@@ -23,6 +32,11 @@ public class TransactionService {
         }
     }
 
+    /**
+     * Retrieves all stored transactions.
+     *
+     * @return a list of all transactions
+     */
     public List<Transaction> getAll() {
         return repo.getAll();
     }

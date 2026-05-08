@@ -6,7 +6,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Service class responsible for generating financial reports.
+ */
 public class ReportService {
+    /**
+     * Generates a financial report based on a list of transactions.
+     *
+     * @param transactions the list of transactions to analyze
+     * @return a formatted financial report as a string
+     */
     public String generate(List<Transaction> transactions) {
         double income = 0;
         double expense = 0;
