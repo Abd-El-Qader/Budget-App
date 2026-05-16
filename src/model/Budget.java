@@ -38,14 +38,19 @@ public class Budget {
      *
      * @return category name
      */
-    public String getCategory() { return category; }
+    public String getCategory() { 
+         return category; 
+    }
 
     /**
      * Returns the spending limit
      *
      * @return limit amount
      */
-    public double getLimitAmount() { return limitAmount; }
+    public double getLimitAmount() 
+    { 
+        return limitAmount;
+    }
 
     /**
      * Returns the amount spent so far
@@ -87,7 +92,7 @@ public class Budget {
      * @return comma-separated string (category, limitAmount, spent)
      */
     public String toFileLine() {
-        return category + "," + limitAmount + "," + spent;
+        return category + "," + limitAmount + spent;
     }
 
     /**
