@@ -22,6 +22,7 @@ public class Transaction {
      * @param category the transaction category
      */
     public Transaction(Type type, double amount, String category) {
+        
         this.type = type;
         this.amount = amount;
         this.category = category;
@@ -76,7 +77,6 @@ public class Transaction {
         if (parts.length != 3) {
             throw new IllegalArgumentException("Invalid transaction line: " + line);
         }
-
         Type type = Type.valueOf(parts[0].trim());
         double amount = Double.parseDouble(parts[1].trim());
         String category = parts[2].trim();
