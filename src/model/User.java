@@ -1,15 +1,35 @@
 package model;
 
+<<<<<<< HEAD
+public class User {
+=======
 /**
  * This class represents a user with name, email, password, and balance.
  */
 public class User {
 
+>>>>>>> 91424dc46448f39f46604c85f5c8d446ef4d53cf
     private String name;
     private String email;
     private String password;
     private double balance;
 
+<<<<<<< HEAD
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.balance = 0;
+    }
+
+    public String getName() { return name; }
+    public String getEmail() { return email; }
+    public String getPassword() { return password; }
+    public double getBalance() { return balance; }
+
+    public void addBalance(double amount) { balance += amount; }
+    public void subtractBalance(double amount) { balance -= amount; }
+=======
     /**
      * Constructs a user with zero initial account balance.
      *
@@ -109,4 +129,5 @@ public class User {
         String[] parts = line.split(",");
         return new User(parts[0], parts[1], parts[2], Double.parseDouble(parts[3]));
     }
+>>>>>>> 91424dc46448f39f46604c85f5c8d446ef4d53cf
 }

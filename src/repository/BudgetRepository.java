@@ -1,5 +1,63 @@
 package repository;
 
+<<<<<<< HEAD
+import database.DBConnection;
+import model.Budget;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+public class BudgetRepository {
+
+    public void save(Budget budget) {
+        try (Connection conn = DBConnection.connect();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "INSERT OR REPLACE INTO budgets(category, limit_amount, spent) VALUES(?,?,?)")) {
+
+            stmt.setString(1, budget.getCategory());
+            stmt.setDouble(2, budget.getLimitAmount());
+            stmt.setDouble(3, budget.getSpent());
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addExpense(String category, double amount) {
+        try (Connection conn = DBConnection.connect();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "UPDATE budgets SET spent = spent + ? WHERE category = ?")) {
+
+            stmt.setDouble(1, amount);
+            stmt.setString(2, category);
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Budget findByCategory(String category) {
+        try (Connection conn = DBConnection.connect();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "SELECT * FROM budgets WHERE category=?")) {
+
+            stmt.setString(1, category);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new Budget(rs.getString("category"),
+                        rs.getDouble("limit_amount"),
+                        rs.getDouble("spent"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+=======
 import model.Budget;
 
 import java.io.*;
@@ -66,11 +124,28 @@ public class BudgetRepository {
             if (budget.getCategory().equalsIgnoreCase(category)) {
                 return budget;
             }
+>>>>>>> 91424dc46448f39f46604c85f5c8d446ef4d53cf
         }
 
         return null;
     }
 
+<<<<<<< HEAD
+    public List<Budget> getAll() {
+        List<Budget> budgets = new ArrayList<>();
+
+        try (Connection conn = DBConnection.connect();
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM budgets")) {
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                budgets.add(new Budget(rs.getString("category"),
+                        rs.getDouble("limit_amount"),
+                        rs.getDouble("spent")));
+            }
+
+=======
     /**
      * Retrieves all budgets from the file.
      *
@@ -92,12 +167,16 @@ public class BudgetRepository {
                     budgets.add(Budget.fromFileLine(line));
                 }
             }
+>>>>>>> 91424dc46448f39f46604c85f5c8d446ef4d53cf
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return budgets;
     }
+<<<<<<< HEAD
+}
+=======
 
     /**
      * Writes all budgets to the file, replacing existing content.
@@ -114,3 +193,4 @@ public class BudgetRepository {
         }
     }
 }
+>>>>>>> 91424dc46448f39f46604c85f5c8d446ef4d53cf

@@ -3,6 +3,13 @@ package service;
 import model.User;
 import repository.UserRepository;
 
+<<<<<<< HEAD
+public class AuthService {
+
+    private UserRepository repo = new UserRepository();
+
+    public User signUp(String name, String email, String password) {
+=======
 /**
  * Service class responsible for user authentication operations
  */
@@ -22,12 +29,19 @@ public class AuthService {
             return null;
         }
 
+>>>>>>> 91424dc46448f39f46604c85f5c8d446ef4d53cf
         User user = new User(name, email, password);
 
         if (repo.save(user)) {
             return user;
         }
 
+<<<<<<< HEAD
+        System.out.println("Account already exists or invalid data.");
+        return null;
+    }
+
+=======
         return null;
     }
     /**
@@ -37,6 +51,7 @@ public class AuthService {
      * @param password the user's password 
      * @return the user if logged in successfully
      */
+>>>>>>> 91424dc46448f39f46604c85f5c8d446ef4d53cf
     public User login(String email, String password) {
         User user = repo.find(email);
 
@@ -44,6 +59,10 @@ public class AuthService {
             return user;
         }
 
+<<<<<<< HEAD
+        System.out.println("Invalid email or password.");
+=======
+>>>>>>> 91424dc46448f39f46604c85f5c8d446ef4d53cf
         return null;
     }
 }
