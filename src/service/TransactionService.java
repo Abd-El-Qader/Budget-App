@@ -1,9 +1,7 @@
 package service;
-
 import model.Transaction;
 import model.User;
 import repository.TransactionRepository;
-
 import java.util.List;
 
 /**
@@ -11,7 +9,7 @@ import java.util.List;
  */
 public class TransactionService {
     private TransactionRepository repo = new TransactionRepository();
-
+}
     /**
      * Adds a transaction and updates the user's balance.
      *
