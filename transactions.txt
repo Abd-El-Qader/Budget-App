@@ -1,1 +1,0 @@
-INCOME,1200.0,food
